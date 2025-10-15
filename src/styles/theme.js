@@ -23,52 +23,44 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Inter", "Poppins", "Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: 'Arial, Helvetica, Verdana, sans-serif;',
     h1: {
-      fontWeight: 700,
-      fontSize: '3rem',
+      fontWeight: 500,
+      fontSize: '3.33rem',
       lineHeight: 1.2,
-      color: '#2c3e50',
     },
     h2: {
       fontWeight: 600,
       fontSize: '2.5rem',
       lineHeight: 1.3,
-      color: '#2c3e50',
     },
     h3: {
       fontWeight: 600,
       fontSize: '2rem',
       lineHeight: 1.4,
-      color: '#2c3e50',
     },
     h4: {
       fontWeight: 600,
       fontSize: '1.5rem',
       lineHeight: 1.4,
-      color: '#2c3e50',
     },
     h5: {
       fontWeight: 500,
       fontSize: '1.25rem',
       lineHeight: 1.5,
-      color: '#2c3e50',
     },
     h6: {
       fontWeight: 500,
       fontSize: '1.1rem',
       lineHeight: 1.5,
-      color: '#2c3e50',
     },
     body1: {
       fontSize: '1rem',
       lineHeight: 1.6,
-      color: '#666666',
     },
     body2: {
       fontSize: '0.875rem',
       lineHeight: 1.5,
-      color: '#666666',
     },
   },
   components: {

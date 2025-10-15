@@ -6,8 +6,6 @@ import {
   Container,
   Box,
   Drawer,
-  List,
-  ListItem,
   IconButton,
   useMediaQuery,
   useTheme,
@@ -16,21 +14,26 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from 'styled-components';
 
+// === STYLES ===
 const StyledAppBar = styled(AppBar)`
-  background: ${props => props.scrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent'};
-  backdrop-filter: ${props => props.scrolled ? 'blur(10px)' : 'none'};
-  box-shadow: ${props => props.scrolled ? '0 2px 20px rgba(0, 0, 0, 0.1)' : 'none'};
+  background: ${({ scrolled }) =>
+    scrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent'} !important;
+  backdrop-filter: ${({ scrolled }) => (scrolled ? 'blur(10px)' : 'none')};
+  box-shadow: ${({ scrolled }) =>
+    scrolled ? '0 2px 20px rgba(0, 0, 0, 0.1)' : 'none'};
   transition: all 0.3s ease;
+  z-index: 1100;
+  color: inherit;
 `;
 
 const PrimaryHeaderBar = styled(Box)`
-  background: transparent;
+  background: transparent !important;
   padding: 10px 0;
+  box-shadow: none !important;
 `;
 
 const SitePrimaryHeaderWrap = styled(Container)`
-  padding-left: 24px;
-  padding-right: 24px;
+  padding: 24px 12px;
   max-width: 1200px !important;
 `;
 
@@ -88,7 +91,7 @@ const MenuItem = styled.li`
 `;
 
 const MenuLink = styled.a`
-  color: ${props => props.scrolled ? '#2c3e50' : 'white'};
+  color: ${({ scrolled }) => (scrolled ? '#2c3e50' : '#fff')};
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
@@ -96,19 +99,24 @@ const MenuLink = styled.a`
   border-radius: 4px;
   transition: all 0.3s ease;
   display: block;
-  
+
   &:hover {
     color: #ff4814;
-    background: ${props => props.scrolled ? 'rgba(255, 72, 20, 0.1)' : 'rgba(255, 255, 255, 0.1)'};
+    background: ${({ scrolled }) =>
+      scrolled
+        ? 'rgba(255, 72, 20, 0.1)'
+        : 'rgba(255, 255, 255, 0.1)'};
   }
-  
-  ${props => props.active && `
+
+  ${({ active }) =>
+    active &&
+    `
     color: #ff4814;
   `}
 `;
 
 const MobileMenuButton = styled(IconButton)`
-  color: ${props => props.scrolled ? '#2c3e50' : 'white'};
+  color: ${({ scrolled }) => (scrolled ? '#2c3e50' : '#fff')};
 `;
 
 const MobileDrawer = styled(Drawer)`
@@ -125,10 +133,7 @@ const MobileMenuList = styled.ul`
 `;
 
 const MobileMenuItem = styled.li`
-  margin: 0;
-  padding: 0;
   border-bottom: 1px solid #f0f0f0;
-  
   &:last-child {
     border-bottom: none;
   }
@@ -143,16 +148,19 @@ const MobileMenuLink = styled.a`
   display: block;
   width: 100%;
   text-align: left;
-  
+
   &:hover {
     color: #ff4814;
   }
-  
-  ${props => props.active && `
+
+  ${({ active }) =>
+    active &&
+    `
     color: #ff4814;
   `}
 `;
 
+// === COMPONENT ===
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -160,18 +168,12 @@ const Header = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      setScrolled(isScrolled);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   const menuItems = [
     { text: 'Home', href: '/', active: true },
@@ -185,31 +187,19 @@ const Header = () => {
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <SiteBranding>
-          <LogoLink href="/" rel="home" aria-current="page">
-            <Logo 
-              src="/images/Logo_Novonort4x-208x36.png" 
-              alt="Novonorte"
-              width="208"
-              height="36"
-              onError={(e) => {
-                e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjA4IiBoZWlnaHQ9IjM2IiB2aWV3Qm94PSIwIDAgMjA4IDM2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik00MCA2VjMwSDE2VjZINDBaTTUwIDZWMzBINTBWMTBINTBaTTYwIDZWMzBINjBWMTBINjBaTTcwIDZWMzBINzBWMTBINzBaTTgwIDZWMzBIODBWMTBIODBaTTkwIDZWMzBIOTBWMTBIOTBaTTEwMCA2VjMwSDEwMFYxMEgxMDBaTTExMCA2VjMwSDExMFYxMEgxMTBaTTEyMCA2VjMwSDEyMFYxMEgxMjBaTTEzMCA2VjMwSDEzMFYxMEgxMzBaTTE0MCA2VjMwSDE0MFYxMEgxNDBaTTE1MCA2VjMwSDE1MFYxMEgxNTBaTTE2MCA2VjMwSDE2MFYxMEgxNjBaTTE3MCA2VjMwSDE3MFYxMEgxNzBaTTE4MCA2VjMwSDE4MFYxMEgxODBaTTE5MCA2VjMwSDE5MFYxMEgxOTBaIiBmaWxsPSIjZmY0ODE0Ii8+PC9zdmc+';
-              }}
-            />
+          <LogoLink href="/" rel="home">
+            <Logo src="/images/logo.webp" alt="Novonorte" />
           </LogoLink>
         </SiteBranding>
         <IconButton onClick={handleDrawerToggle}>
           <CloseIcon />
         </IconButton>
       </Box>
-      
+
       <MobileMenuList>
         {menuItems.map((item) => (
           <MobileMenuItem key={item.text}>
-            <MobileMenuLink 
-              href={item.href}
-              onClick={handleDrawerToggle}
-              active={item.active}
-            >
+            <MobileMenuLink href={item.href} onClick={handleDrawerToggle} active={item.active}>
               {item.text}
             </MobileMenuLink>
           </MobileMenuItem>
@@ -219,76 +209,42 @@ const Header = () => {
   );
 
   return (
-    <StyledAppBar position="fixed" scrolled={scrolled}>
-      <PrimaryHeaderBar className="ast-primary-header-bar ast-primary-header main-header-bar">
-        <SitePrimaryHeaderWrap 
-          className="site-primary-header-wrap ast-builder-grid-row-container ast-container"
-          maxWidth={false}
-          disableGutters
-        >
-          <BuilderGridRow className="ast-builder-grid-row ast-builder-grid-row-has-sides ast-builder-grid-row-no-center">
-            <SiteHeaderSectionLeft className="site-header-primary-section-left site-header-section ast-flex site-header-section-left">
-              <Box className="ast-builder-layout-element ast-flex site-header-focus-item">
-                <SiteBranding className="site-branding ast-site-identity">
-                  <span className="site-logo-img">
-                    <LogoLink href="/" rel="home" aria-current="page">
-                      <Logo 
-                        src="/images/Logo_Novonort4x-208x36.png" 
-                        alt="Novonorte"
-                        width="208"
-                        height="36"
-                        className="custom-logo"
-                        onError={(e) => {
-                          e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjA4IiBoZWlnaHQ9IjM2IiB2aWV3Qm94PSIwIDAgMjA4IDM2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik00MCA2VjMwSDE2VjZINDBaTTUwIDZWMzBINTBWMTBINTBaTTYwIDZWMzBINjBWMTBINjBaTTcwIDZWMzBINzBWMTBINzBaTTgwIDZWMzBIODBWMTBIODBaTTkwIDZWMzBIOTBWMTBIOTBaTTEwMCA2VjMwSDEwMFYxMEgxMDBaTTExMCA2VjMwSDExMFYxMEgxMTBaTTEyMCA2VjMwSDEyMFYxMEgxMjBaTTEzMCA2VjMwSDEzMFYxMEgxMzBaTTE0MCA2VjMwSDE0MFYxMEgxNDBaTTE1MCA2VjMwSDE1MFYxMEgxNTBaTTE2MCA2VjMwSDE2MFYxMEgxNjBaTTE3MCA2VjMwSDE3MFYxMEgxNzBaTTE4MCA2VjMwSDE4MFYxMEgxODBaTTE5MCA2VjMwSDE5MFYxMEgxOTBaIiBmaWxsPSIjZmY0ODE0Ii8+PC9zdmc+';
-                        }}
-                      />
-                    </LogoLink>
-                  </span>
-                </SiteBranding>
-              </Box>
+    <StyledAppBar
+      position="fixed"
+      scrolled={scrolled}
+      color="transparent"
+      elevation={0}
+    >
+      <PrimaryHeaderBar>
+        <SitePrimaryHeaderWrap maxWidth={false} disableGutters>
+          <BuilderGridRow>
+            <SiteHeaderSectionLeft>
+              <SiteBranding>
+                <LogoLink href="/" rel="home">
+                  <Logo src="/images/logo.webp" alt="Novonorte" />
+                </LogoLink>
+              </SiteBranding>
             </SiteHeaderSectionLeft>
 
-            <SiteHeaderSectionRight className="site-header-primary-section-right site-header-section ast-flex ast-grid-right-section">
+            <SiteHeaderSectionRight>
               {!isMobile ? (
-                <Box className="ast-builder-menu-1 ast-builder-menu ast-flex ast-builder-menu-1-focus-item ast-builder-layout-element site-header-focus-item">
-                  <Box className="ast-main-header-bar-alignment">
-                    <Box className="main-header-bar-navigation">
-                      <MainNavigation 
-                        className="site-navigation ast-flex-grow-1 navigation-accessibility"
-                        id="primary-site-navigation-desktop"
-                        aria-label="Primary Site Navigation"
-                      >
-                        <Box className="main-navigation ast-inline-flex">
-                          <MenuList className="main-header-menu ast-menu-shadow ast-nav-menu ast-flex submenu-with-border stack-on-mobile">
-                            {menuItems.map((item) => (
-                              <MenuItem 
-                                key={item.text}
-                                className={`menu-item menu-item-type-post_type menu-item-object-page ${item.active ? 'current-menu-item page_item current_page_item' : ''}`}
-                              >
-                                <MenuLink 
-                                  href={item.href}
-                                  className="menu-link"
-                                  scrolled={scrolled}
-                                  active={item.active}
-                                  aria-current={item.active ? "page" : null}
-                                >
-                                  {item.text}
-                                </MenuLink>
-                              </MenuItem>
-                            ))}
-                          </MenuList>
-                        </Box>
-                      </MainNavigation>
-                    </Box>
-                  </Box>
-                </Box>
+                <MainNavigation>
+                  <MenuList>
+                    {menuItems.map((item) => (
+                      <MenuItem key={item.text}>
+                        <MenuLink
+                          href={item.href}
+                          scrolled={scrolled}
+                          active={item.active}
+                        >
+                          {item.text}
+                        </MenuLink>
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </MainNavigation>
               ) : (
-                <MobileMenuButton
-                  aria-label="open drawer"
-                  edge="start"
-                  onClick={handleDrawerToggle}
-                  scrolled={scrolled}
-                >
+                <MobileMenuButton onClick={handleDrawerToggle} scrolled={scrolled}>
                   <MenuIcon />
                 </MobileMenuButton>
               )}
@@ -302,9 +258,7 @@ const Header = () => {
         anchor="right"
         open={mobileOpen}
         onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
+        ModalProps={{ keepMounted: true }}
       >
         {mobileMenu}
       </MobileDrawer>
