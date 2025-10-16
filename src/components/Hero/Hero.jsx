@@ -1,9 +1,11 @@
-// src/components/Hero/Hero.jsx
 import React from 'react';
-import { Box, Container, Typography, Button, Grid } from '@mui/material';
+import { Box, Container, Typography, IconButton } from '@mui/material';
 import { keyframes } from 'styled-components';
 import styled from 'styled-components';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
+// === ANIMAÇÃO ===
 const fadeInUp = keyframes`
   from {
     opacity: 0;
@@ -15,6 +17,7 @@ const fadeInUp = keyframes`
   }
 `;
 
+// === ESTILOS ===
 const HeroSection = styled(Box)`
   background-image: url('/images/bkgHome.webp');
   background-size: cover;
@@ -26,8 +29,7 @@ const HeroSection = styled(Box)`
   position: relative;
   overflow: hidden;
   padding-top: 80px;
-  
-  /* Add overlay for better text readability */
+
   &::before {
     content: '';
     position: absolute;
@@ -53,6 +55,10 @@ const HeroTitle = styled(Typography)`
   font-size: 3rem;
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+  }
 `;
 
 const HeroSubtitle = styled(Typography)`
@@ -63,25 +69,70 @@ const HeroSubtitle = styled(Typography)`
   font-size: 1.2rem;
   text-align: center;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
-const Separator = styled(Box)`
-  width: 60px;
-  height: 3px;
-  background: #ff4814;
-  margin: 0 auto 2rem;
+// === BOTÕES DE SETAS ===
+const ArrowContainer = styled(Box)`
+  position: absolute;
+  left: 9%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @media (max-width: 768px) {
+    left: 10px;
+  }
 `;
 
+const ArrowButton = styled(IconButton)`
+  background-color: #ff4814 !important;
+  color: #fff !important;
+  width: 2.8rem;
+  height: 2.8rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #fff !important;
+    color: #ff4814 !important;
+    transform: scale(1.1);
+  }
+
+  svg {
+    font-size: 1.8rem;
+  }
+`;
+
+// === COMPONENTE ===
 const Hero = () => {
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const scrollToBottom = () =>
+    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+
   return (
     <HeroSection id="home">
+      {/* Botões de navegação (setas) */}
+      <ArrowContainer>
+        <ArrowButton onClick={() => {}}>
+          <KeyboardArrowUpIcon />
+        </ArrowButton>
+        <ArrowButton onClick={() => {}}>
+          <KeyboardArrowDownIcon />
+        </ArrowButton>
+      </ArrowContainer>
+
       <Container maxWidth="lg">
         <AnimatedContent>
-          <Separator />
-          <HeroTitle variant="h1" gutterBottom>
+          <HeroTitle variant="h2" gutterBottom>
             Engenharia & Construção<br />de ponta a ponta
           </HeroTitle>
-          <HeroSubtitle variant="h6" paragraph>
+          <HeroSubtitle variant="body1" paragraph>
             Transformamos seus projetos em realidade:<br />
             Seja residencial, predial ou industrial, nossa entrega<br />
             é sinônimo de excelência.

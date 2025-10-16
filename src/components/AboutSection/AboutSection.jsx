@@ -8,7 +8,6 @@ const AboutSection = styled(Box)`
 `;
 
 const AboutImage = styled(Box)`
-  border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 `;
@@ -29,7 +28,7 @@ const AboutSectionComponent = () => {
   return (
     <AboutSection id="sobre">
       <Container maxWidth="lg">
-        <Grid container spacing={6} alignItems="center">
+        <Grid spacing={0.5} container alignItems="center">
           <Grid item xs={12} md={6}>
             <AboutImage>
               <Box
@@ -44,7 +43,7 @@ const AboutSectionComponent = () => {
                 }}
               >
                 <img 
-                  src="/images/Captura-de-tela-2025-08-12-162646.png"
+                  src="/images/sobre.webp"
                   alt="Sobre a Novonorte"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   onError={(e) => {
@@ -58,7 +57,7 @@ const AboutSectionComponent = () => {
               </Box>
             </AboutImage>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid style={{ paddingLeft: "3rem"}} item xs={12} md={6}>
             <Typography 
               variant="h4" 
               gutterBottom 
@@ -69,7 +68,7 @@ const AboutSectionComponent = () => {
                 fontSize: '2rem'
               }}
             >
-              Sobre a Novonorte
+              Sobre a Novonorte {/* //Montserrat */}
             </Typography>
             <Typography 
               variant="body1" 
@@ -81,8 +80,7 @@ const AboutSectionComponent = () => {
                 lineHeight: 1.6
               }}
             >
-              <strong>A LGCON em parceria estratégica com a Eletrorede® Engenharia agora<br />
-              é a Novonorte®, um novo nome e com uma nova identidade.</strong>
+              <strong>A LGCON em parceria estratégica com a Eletrorede® Engenharia agora é a Novonorte®, um novo nome e com uma nova identidade.</strong>
             </Typography>
             <Typography 
               variant="body1" 

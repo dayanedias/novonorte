@@ -1,5 +1,4 @@
-// src/components/Header/Header.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -16,14 +15,12 @@ import styled from 'styled-components';
 
 // === STYLES ===
 const StyledAppBar = styled(AppBar)`
-  background: ${({ scrolled }) =>
-    scrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent'} !important;
-  backdrop-filter: ${({ scrolled }) => (scrolled ? 'blur(10px)' : 'none')};
-  box-shadow: ${({ scrolled }) =>
-    scrolled ? '0 2px 20px rgba(0, 0, 0, 0.1)' : 'none'};
+  background: transparent !important;
+ backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   z-index: 1100;
-  color: inherit;
+  color: inherit; 
 `;
 
 const PrimaryHeaderBar = styled(Box)`
@@ -91,7 +88,7 @@ const MenuItem = styled.li`
 `;
 
 const MenuLink = styled.a`
-  color: ${({ scrolled }) => (scrolled ? '#2c3e50' : '#fff')};
+  color: #ffffff;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
@@ -102,10 +99,7 @@ const MenuLink = styled.a`
 
   &:hover {
     color: #ff4814;
-    background: ${({ scrolled }) =>
-      scrolled
-        ? 'rgba(255, 72, 20, 0.1)'
-        : 'rgba(255, 255, 255, 0.1)'};
+    background: rgba(255, 72, 20, 0.1);
   }
 
   ${({ active }) =>
@@ -116,7 +110,7 @@ const MenuLink = styled.a`
 `;
 
 const MobileMenuButton = styled(IconButton)`
-  color: ${({ scrolled }) => (scrolled ? '#2c3e50' : '#fff')};
+  color: #2c3e50;
 `;
 
 const MobileDrawer = styled(Drawer)`
@@ -163,15 +157,8 @@ const MobileMenuLink = styled.a`
 // === COMPONENT ===
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
@@ -210,9 +197,8 @@ const Header = () => {
 
   return (
     <StyledAppBar
-      position="fixed"
-      scrolled={scrolled}
       color="transparent"
+      position='absolute'
       elevation={0}
     >
       <PrimaryHeaderBar>
@@ -232,11 +218,7 @@ const Header = () => {
                   <MenuList>
                     {menuItems.map((item) => (
                       <MenuItem key={item.text}>
-                        <MenuLink
-                          href={item.href}
-                          scrolled={scrolled}
-                          active={item.active}
-                        >
+                        <MenuLink href={item.href} active={item.active}>
                           {item.text}
                         </MenuLink>
                       </MenuItem>
@@ -244,7 +226,7 @@ const Header = () => {
                   </MenuList>
                 </MainNavigation>
               ) : (
-                <MobileMenuButton onClick={handleDrawerToggle} scrolled={scrolled}>
+                <MobileMenuButton onClick={handleDrawerToggle}>
                   <MenuIcon />
                 </MobileMenuButton>
               )}

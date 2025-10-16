@@ -30,7 +30,7 @@ export const theme = createTheme({
       lineHeight: 1.2,
     },
     h2: {
-      fontWeight: 600,
+      fontWeight: 500,
       fontSize: '2.5rem',
       lineHeight: 1.3,
     },
@@ -46,7 +46,7 @@ export const theme = createTheme({
     },
     h5: {
       fontWeight: 500,
-      fontSize: '1.25rem',
+      fontSize: '1.30rem',
       lineHeight: 1.5,
     },
     h6: {
