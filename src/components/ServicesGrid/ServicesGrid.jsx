@@ -1,15 +1,14 @@
 import React from 'react';
-import { Container, Grid, Box, Typography } from '@mui/material';
+import { Container, Grid, Box, Typography, IconButton } from '@mui/material';
 import styled from 'styled-components';
 
 const ServicesGridSection = styled(Box)`
   position: relative;
   z-index: 3;
   background: transparent !important;
-  margin-top: -2rem;
+  margin-top: -2.5rem;
   padding-bottom: 0;
 `;
-
 
 const ServiceCard = styled(Box)`
   background: #ff4814;
@@ -33,10 +32,32 @@ const ServiceCard = styled(Box)`
 
 const ServiceIcon = styled(Box)`
   width: 100%;
-  max-width: 100%;
-  height: 1.5rem;
+  height: 2rem;
   background: #ff7446;
   margin-bottom: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1.2rem;
+`;
+
+const ArrowCircle = styled(IconButton)`
+  background-color: #ff4814 !important;
+  color: #fff !important;
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: all 0.3s ease;
+  border: 2px solid #fff;
+
+  &:hover {
+    background-color: #fff !important;
+    color: #ff4814 !important;
+  }
+
+  img {
+    max-width: 200%;
+  }
 `;
 
 const ServiceTitle = styled(Typography)`
@@ -82,7 +103,15 @@ const ServicesGrid = () => {
           {services.map((service, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
               <ServiceCard>
-                <ServiceIcon />
+                <ServiceIcon>
+                  <ArrowCircle>
+                    {/* < ArrowForwardIosIcon fontSize='large'/> */}
+                    {/* <div style={{ fontSize: "18px"}}>
+                      {`${'>'}`}
+                    </div> */}
+                    <img src='/icons/arrow_forward.svg' />
+                  </ArrowCircle>
+                </ServiceIcon>
                 <div style={{ padding: '0.25rem 2rem 1.5rem 1.5rem' }}>
                   <ServiceTitle variant="h5">{service.title}</ServiceTitle>
                   <div style={{ height: 10 }} />
