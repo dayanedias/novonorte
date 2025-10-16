@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 const AboutSection = styled(Box)`
   padding: 100px 0;
-  background: #f8f9fa;
 `;
 
 const AboutImage = styled(Box)`

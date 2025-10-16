@@ -83,8 +83,8 @@ const ServicesGrid = () => {
             <Grid item xs={12} sm={6} md={3} key={index}>
               <ServiceCard>
                 <ServiceIcon />
-                <div style={{ padding: '0.25rem 1.5rem 1.5rem 1.5rem' }}>
-                  <ServiceTitle variant="h6">{service.title}</ServiceTitle>
+                <div style={{ padding: '0.25rem 2rem 1.5rem 1.5rem' }}>
+                  <ServiceTitle variant="h5">{service.title}</ServiceTitle>
                   <div style={{ height: 10 }} />
                   <ServiceDescription variant="body2">
                     {service.description}
