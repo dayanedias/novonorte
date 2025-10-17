@@ -15,6 +15,12 @@ const Row = styled(Box)`
   border-bottom: 1px solid #dcdcdc;
   width: 100%;
   background: linear-gradient(to right, #ffffff 50%, #ff4814 50%);
+  transition: background 0.3s ease;
+
+  @media (max-width: 900px) {
+    background: linear-gradient(to bottom, #ffffff 50%, #ff4814 50%);
+    flex-direction: column;
+  }
 `;
 
 const ContentWrapper = styled(Grid)`
@@ -24,6 +30,11 @@ const ContentWrapper = styled(Grid)`
   flex-wrap: wrap;
   position: relative;
   z-index: 1;
+  transition: all 0.3s ease;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `;
 
 const LeftCol = styled(Box)`
@@ -33,6 +44,11 @@ const LeftCol = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: 900px) {
+    padding: 3rem 2rem;
+    text-align: center;
+  }
 `;
 
 const RightCol = styled(Box)`
@@ -44,6 +60,12 @@ const RightCol = styled(Box)`
   display: flex;
   align-items: center;
   min-height: 200px;
+
+  @media (max-width: 900px) {
+    padding: 3rem 2rem;
+    justify-content: center;
+    text-align: center;
+  }
 `;
 
 const PlusCircle = styled(Box)`
@@ -61,10 +83,16 @@ const PlusCircle = styled(Box)`
   align-items: center;
   justify-content: center;
   z-index: 2;
+  transition: all 0.3s ease;
 
   svg {
     font-size: 1.8rem;
     font-weight: bold;
+  }
+
+  @media (max-width: 900px) {
+    top: calc(50%);
+    transform: translate(-50%, -50%);
   }
 `;
 

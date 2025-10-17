@@ -13,7 +13,7 @@ const Wrapper = styled(Box)`
   padding: 100px 0;
   overflow: hidden;
 
-  /* Personalização dos botões do Swiper */
+  /* ===== Botões do Swiper ===== */
   .swiper-button-next,
   .swiper-button-prev {
     background: white;
@@ -23,6 +23,8 @@ const Wrapper = styled(Box)`
     border-radius: 50%;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .swiper-navigation-icon {
@@ -36,13 +38,14 @@ const Wrapper = styled(Box)`
     font-weight: bold;
   }
 
+  /* ===== Posição padrão (desktop) ===== */
   .swiper-button-prev {
-    left: 9.3rem !important; /* recuo de ~2rem do lado esquerdo */
+    left: 9.7rem !important;
     margin-top: 0.7rem;
   }
 
   .swiper-button-next {
-    right: 9.3rem !important; /* recuo de ~2rem do lado direito */
+    right: 9.7rem !important;
     margin-top: 0.7rem;
   }
 
@@ -52,20 +55,30 @@ const Wrapper = styled(Box)`
     color: #fff !important;
   }
 
-  /* Centraliza verticalmente as setas */
-  .swiper-button-next,
-  .swiper-button-prev {
-    top: 50%;
-    transform: translateY(-50%);
+  /* ===== Ajustes responsivos ===== */
+  @media (max-width: 1200px) {
+    .swiper-button-prev {
+      left: 2rem !important;
+    }
+    .swiper-button-next {
+      right: 2rem !important;
+    }
   }
 
   @media (max-width: 768px) {
-    .swiper-button-next,
     .swiper-button-prev {
-      display: none; /* Esconde em mobile */
+      left: 1rem !important;
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+    .swiper-button-next {
+      right: 1rem !important;
+      width: 1.8rem;
+      height: 1.8rem;
     }
   }
 `;
+
 
 const SectionTitle = styled(Typography)`
   text-align: center;
@@ -240,10 +253,10 @@ const ProjectsSection = () => {
         spaceBetween={10}
         slidesPerView={2}
         speed={800}
-        style={{ width: "100%", padding: "0 10rem" }}
         breakpoints={{
-          64: { slidesPerView: 1 },
-          832: { slidesPerView: 2 },
+          0: { slidesPerView: 1 }, // mobile
+          768: { slidesPerView: 2 }, // tablet
+          1200: { slidesPerView: 2 }, // desktop
         }}
       >
         {projects.map((p, i) => (

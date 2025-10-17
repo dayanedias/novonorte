@@ -5,7 +5,7 @@ import { Instagram, LinkedIn } from '@mui/icons-material';
 import styled from 'styled-components';
 
 const FooterSection = styled(Box)`
-  background: #2c3e50;
+  background: #ff4814;
   color: white;
   padding: 40px 0 20px;
 `;

@@ -40,12 +40,12 @@ const Wrapper = styled(Box)`
   }
 
   .swiper-button-prev {
-    left: 1.5rem !important;
+    left: 0.2rem !important;
     margin-top: 0.1rem;
   }
 
   .swiper-button-next {
-    right: 1.5rem !important;
+    right: 0.2rem !important;
     margin-top: 0.7rem;
   }
 
