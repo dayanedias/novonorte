@@ -47,7 +47,7 @@ const AboutSectionComponent = () => {
                 }}
               >
                 <img 
-                  src="/images/sobre.webp"
+                  src="/novonorte-site/images/sobre.webp"
                   alt="Sobre a Novonorte"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   onError={(e) => {

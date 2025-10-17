@@ -19,7 +19,7 @@ const fadeInUp = keyframes`
 
 // === ESTILOS ===
 const HeroSection = styled(Box)`
-  background-image: url('/images/bkgHome.webp');
+  background-image: url('/novonorte-site/images/bkgHome.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -30,21 +30,30 @@ const HeroSection = styled(Box)`
   overflow: hidden;
   padding-top: 80px;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+  @media (max-width: 768px) {
+    padding-top: 60px;
+  }
+`;
+
+const HeroContainer = styled(Container)`
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+  z-index: 2;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 60px);
   }
 `;
 
 const AnimatedContent = styled(Box)`
   animation: ${fadeInUp} 1s ease-out 0.5s both;
-  position: relative;
-  z-index: 2;
+  text-align: center;
+  max-width: 100%;
 `;
 
 const HeroTitle = styled(Typography)`
@@ -53,7 +62,6 @@ const HeroTitle = styled(Typography)`
   margin-bottom: 1.5rem;
   line-height: 1.2;
   font-size: 3rem;
-  text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
   @media (max-width: 768px) {
@@ -67,7 +75,6 @@ const HeroSubtitle = styled(Typography)`
   margin-bottom: 2.5rem;
   line-height: 1.6;
   font-size: 1.2rem;
-  text-align: center;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 
   @media (max-width: 768px) {
@@ -78,16 +85,19 @@ const HeroSubtitle = styled(Typography)`
 // === BOTÕES DE SETAS ===
 const ArrowContainer = styled(Box)`
   position: absolute;
-  left: 9%;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 3;
   display: flex;
   flex-direction: column;
   gap: 12px;
 
   @media (max-width: 768px) {
-    left: 10px;
+    position: static;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1.5rem;
   }
 `;
 
@@ -117,28 +127,27 @@ const Hero = () => {
 
   return (
     <HeroSection id="home">
-      {/* Botões de navegação (setas) */}
-      <ArrowContainer>
-        <ArrowButton onClick={() => {}}>
-          <KeyboardArrowUpIcon />
-        </ArrowButton>
-        <ArrowButton onClick={() => {}}>
-          <KeyboardArrowDownIcon />
-        </ArrowButton>
-      </ArrowContainer>
+      <HeroContainer maxWidth="lg">
+        <ArrowContainer>
+          <ArrowButton onClick={scrollToTop}>
+            <KeyboardArrowUpIcon />
+          </ArrowButton>
+          <ArrowButton onClick={scrollToBottom}>
+            <KeyboardArrowDownIcon />
+          </ArrowButton>
+        </ArrowContainer>
 
-      <Container maxWidth="lg">
         <AnimatedContent>
-          <HeroTitle variant="h2" gutterBottom>
+          <HeroTitle variant="h2">
             Engenharia & Construção<br />de ponta a ponta
           </HeroTitle>
-          <HeroSubtitle variant="body1" paragraph>
+          <HeroSubtitle variant="body1">
             Transformamos seus projetos em realidade:<br />
             Seja residencial, predial ou industrial, nossa entrega<br />
             é sinônimo de excelência.
           </HeroSubtitle>
         </AnimatedContent>
-      </Container>
+      </HeroContainer>
     </HeroSection>
   );
 };

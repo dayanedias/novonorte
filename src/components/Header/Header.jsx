@@ -16,7 +16,7 @@ import styled from 'styled-components';
 // === STYLES ===
 const StyledAppBar = styled(AppBar)`
   background: transparent !important;
- backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   z-index: 1100;
@@ -175,7 +175,7 @@ const Header = () => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <SiteBranding>
           <LogoLink href="/" rel="home">
-            <Logo src="/images/logo.webp" alt="Novonorte" />
+            <Logo src="/novonorte-site/images/logo.webp" alt="Novonorte" />
           </LogoLink>
         </SiteBranding>
         <IconButton onClick={handleDrawerToggle}>
@@ -207,7 +207,7 @@ const Header = () => {
             <SiteHeaderSectionLeft>
               <SiteBranding>
                 <LogoLink href="/" rel="home">
-                  <Logo src="/images/logo.webp" alt="Novonorte" />
+                  <Logo src="/novonorte-site/images/logo.webp" alt="Novonorte" />
                 </LogoLink>
               </SiteBranding>
             </SiteHeaderSectionLeft>

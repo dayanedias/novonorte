@@ -4,47 +4,51 @@ import styled from 'styled-components';
 import AddIcon from '@mui/icons-material/Add';
 
 const Section = styled(Box)`
-  background: #f2f2f2;
   width: 100%;
   overflow: hidden;
 `;
 
-const Row = styled(Grid)`
-  border-bottom: 1px solid #dcdcdc;
+const Row = styled(Box)`
+  display: flex;
+  justify-content: center;
   position: relative;
+  border-bottom: 1px solid #dcdcdc;
+  width: 100%;
+  background: linear-gradient(to right, #ffffff 50%, #ff4814 50%);
+`;
+
+const ContentWrapper = styled(Grid)`
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 `;
 
 const LeftCol = styled(Box)`
-  background: #ffffff;
-  padding: 3rem 4rem 3rem 8.5rem;
+  background: transparent;
+  flex: 1;
+  padding: 3rem 4rem 3rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
 `;
 
 const RightCol = styled(Box)`
-  background: #ff4814;
+  background: transparent;
   color: #ffffff;
+  flex: 1;
   padding: 3rem 4rem 3rem 4rem;
   position: relative;
   display: flex;
   align-items: center;
   min-height: 200px;
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 15%;
-    bottom: 15%;
-    width: 2px;
-  }
 `;
 
 const PlusCircle = styled(Box)`
   position: absolute;
-  left: calc(50%);
+  left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   background: white;
@@ -108,30 +112,32 @@ const FeaturesSectionComponent = () => {
   return (
     <Section>
       {features.map((feature, index) => (
-        <Row container key={index}>
-          <Grid item xs={12} md={6}>
-            <LeftCol>
-              <Number>{feature.number}</Number>
-              <Title variant='h5'>
-                {feature.title.split('\n').map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    {i < feature.title.split('\n').length - 1 && <br />}
-                  </span>
-                ))}
-              </Title>
-            </LeftCol>
-          </Grid>
+        <Row key={index}>
+          <ContentWrapper container>
+            <Grid item xs={12} md={6}>
+              <LeftCol>
+                <Number>{feature.number}</Number>
+                <Title variant="h5">
+                  {feature.title.split('\n').map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      {i < feature.title.split('\n').length - 1 && <br />}
+                    </span>
+                  ))}
+                </Title>
+              </LeftCol>
+            </Grid>
 
-          <Grid item xs={12} md={6}>
-            <RightCol>
-              <Description>{feature.description}</Description>
-            </RightCol>
-          </Grid>
+            <Grid item xs={12} md={6}>
+              <RightCol>
+                <Description>{feature.description}</Description>
+              </RightCol>
+            </Grid>
 
-          <PlusCircle>
-            <AddIcon />
-          </PlusCircle>
+            <PlusCircle>
+              <AddIcon />
+            </PlusCircle>
+          </ContentWrapper>
         </Row>
       ))}
     </Section>

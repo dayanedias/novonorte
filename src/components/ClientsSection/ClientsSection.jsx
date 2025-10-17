@@ -111,10 +111,10 @@ const ClientCard = styled(Box)`
 // ====== COMPONENTE ======
 const ClientsSectionComponent = () => {
   const clients = [
-    { name: "Zure", logo: "/images/Logo-1.png" },
-    { name: "Lote5", logo: "/images/Logo-2.png" },
-    { name: "Ribeiro Aquino", logo: "/images/Logo-3.png" },
-    { name: "Tensor", logo: "/images/Logo-4.png" },
+    { name: "Zure", logo: "/novonorte-site/images/Logo-1.png" },
+    { name: "Lote5", logo: "/novonorte-site/images/Logo-2.png" },
+    { name: "Ribeiro Aquino", logo: "/novonorte-site/images/Logo-3.png" },
+    { name: "Tensor", logo: "/novonorte-site/images/Logo-4.png" },
   ];
 
   useEffect(() => {

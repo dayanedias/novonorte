@@ -109,7 +109,7 @@ const ServicesGrid = () => {
                     {/* <div style={{ fontSize: "18px"}}>
                       {`${'>'}`}
                     </div> */}
-                    <img src='/icons/arrow_forward.svg' />
+                    <img src='/novonorte-site/icons/arrow_forward.svg' />
                   </ArrowCircle>
                 </ServiceIcon>
                 <div style={{ padding: '0.25rem 2rem 1.5rem 1.5rem' }}>
