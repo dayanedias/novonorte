@@ -12,12 +12,16 @@ const AboutImage = styled(Box)`
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 `;
 
-const AboutButton = styled(Button)`
+const StyledButton = styled.div`
   background: #ff4814;
   color: white;
+  border-radius: 25px;
   padding: 12px 30px;
   font-weight: 500;
-  margin-left: 3rem;
+  max-width: 200px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
   
   &:hover {
     background: #e53e12;
@@ -57,7 +61,7 @@ const AboutSectionComponent = () => {
               </Box>
             </AboutImage>
           </Grid>
-          <Grid style={{ paddingLeft: "3rem"}} item xs={12} md={6}>
+          <Grid style={{ paddingLeft: "4rem"}} item xs={12} md={6}>
             <Typography 
               variant="h4" 
               gutterBottom 
@@ -95,9 +99,9 @@ const AboutSectionComponent = () => {
               capacidade de entrega em gerenciamento de obras, construções e reformas, garantindo projetos 
               executados com excelência, eficiência de custos e rigoroso cumprimento de prazos.
             </Typography>
-            <AboutButton variant="contained">
+            <StyledButton>
               Confira +
-            </AboutButton>
+            </StyledButton>
           </Grid>
         </Grid>
       </Container>
