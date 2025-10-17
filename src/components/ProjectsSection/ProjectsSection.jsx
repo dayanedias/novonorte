@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,22 +12,75 @@ const Wrapper = styled(Box)`
   background: #f2f2f2;
   padding: 100px 0;
   overflow: hidden;
+
+  /* Personalização dos botões do Swiper */
+  .swiper-button-next,
+  .swiper-button-prev {
+    background: white;
+    color: #333 !important;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .swiper-navigation-icon {
+    width: 50%;
+    height: 50%;
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 16px !important;
+    font-weight: bold;
+  }
+
+  .swiper-button-prev {
+    left: 4rem !important; /* recuo de ~2rem do lado esquerdo */
+    margin-top: 0.7rem;
+  }
+
+  .swiper-button-next {
+    right: 4rem !important; /* recuo de ~2rem do lado direito */
+    margin-top: 0.7rem;
+  }
+
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background: #ff4814;
+    color: #fff !important;
+  }
+
+  /* Centraliza verticalmente as setas */
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @media (max-width: 768px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none; /* Esconde em mobile */
+    }
+  }
 `;
 
 const SectionTitle = styled(Typography)`
-  text-align: center; 
-  margin-bottom: 1rem; 
-  font-weight: 700; 
-  color: #2c3e50; 
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #2c3e50;
   font-size: 2.5rem;
   padding-bottom: 1rem;
-  `;
+`;
 
 const SectionSubtitle = styled(Typography)`
-  text-align: center; 
-  color: #666666; 
-  line-height: 1.4; 
-  margin-bottom: 3rem; 
+  text-align: center;
+  color: #666666;
+  line-height: 1.4;
+  margin-bottom: 3rem;
   font-size: 1.1rem;
 `;
 
@@ -78,8 +131,11 @@ const ProjectInfo = styled(Box)`
   color: #333;
   transform: translateY(100%);
   transition: all 0.4s ease;
-  padding: 1.5rem;
+  padding: 1.5rem 5rem 1.5rem 3rem;
   text-align: left;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
 
   ${ProjectCard}:hover & {
     transform: translateY(0%);
@@ -97,6 +153,14 @@ const ProjectText = styled(Typography)`
   font-size: 0.9rem;
   color: #555;
   line-height: 1.4;
+`;
+
+const InfoLeft = styled.div`
+  width: 50%
+`;
+
+const InfoRight = styled.div`
+  width: 40%
 `;
 
 // ====== COMPONENTE ======
@@ -144,6 +208,12 @@ const ProjectsSection = () => {
     },
   ];
 
+  useEffect(() => {
+    // força o Swiper a renderizar corretamente as setas
+    const buttons = document.querySelectorAll(".swiper-button-next, .swiper-button-prev");
+    buttons.forEach((btn) => (btn.style.display = "flex"));
+  }, []);
+
   return (
     <Wrapper id="obras">
       <SectionTitle variant="h3" fontWeight={500}>
@@ -151,7 +221,8 @@ const ProjectsSection = () => {
       </SectionTitle>
 
       <SectionSubtitle variant="body2">
-        Nosso processo é simples: reunião inicial, arquitetura, orçamento e, após aprovação,<br /> execução. Entregamos com a qualidade Novonorte®.
+        Nosso processo é simples: reunião inicial, arquitetura, orçamento e, após aprovação,
+        <br /> execução. Entregamos com a qualidade Novonorte®.
       </SectionSubtitle>
 
       <ButtonCenter>Confira +</ButtonCenter>
@@ -162,16 +233,15 @@ const ProjectsSection = () => {
         loop
         autoplay={{
           delay: 2500,
-          disableOnInteraction: false,
+          disableOnInteraction: true,
         }}
         spaceBetween={10}
-        slidesPerView={3}
+        slidesPerView={2}
         speed={800}
         style={{ width: "100%", padding: "0 50px" }}
         breakpoints={{
-          0: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1200: { slidesPerView: 3 },
+          64: { slidesPerView: 1 },
+          832: { slidesPerView: 2 },
         }}
       >
         {projects.map((p, i) => (
@@ -179,17 +249,22 @@ const ProjectsSection = () => {
             <ProjectCard>
               <img src={p.img} alt={p.name} />
               <ProjectInfo>
-                <ProjectLabel>Construção</ProjectLabel>
-                <ProjectText>{p.name}</ProjectText>
+                <InfoLeft>
+                  <ProjectLabel variant="h5">Construção</ProjectLabel>
+                  <ProjectText>{p.name}</ProjectText>
 
-                <ProjectLabel>Área | m²</ProjectLabel>
-                <ProjectText>{p.area}</ProjectText>
+                  <ProjectLabel>Área | m²</ProjectLabel>
+                  <ProjectText>{p.area}</ProjectText>
 
-                <ProjectLabel>Localização</ProjectLabel>
-                <ProjectText>{p.location}</ProjectText>
+                  <ProjectLabel>Localização</ProjectLabel>
+                  <ProjectText>{p.location}</ProjectText>
+                </InfoLeft>
 
-                <ProjectLabel>Descrição:</ProjectLabel>
-                <ProjectText>{p.description}</ProjectText>
+                <InfoRight>
+                  <ProjectLabel>Descrição:</ProjectLabel>
+                  <ProjectText>{p.description}</ProjectText>
+                </InfoRight>
+
               </ProjectInfo>
             </ProjectCard>
           </SwiperSlide>
