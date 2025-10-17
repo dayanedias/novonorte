@@ -37,12 +37,12 @@ const Wrapper = styled(Box)`
   }
 
   .swiper-button-prev {
-    left: 4rem !important; /* recuo de ~2rem do lado esquerdo */
+    left: 9.3rem !important; /* recuo de ~2rem do lado esquerdo */
     margin-top: 0.7rem;
   }
 
   .swiper-button-next {
-    right: 4rem !important; /* recuo de ~2rem do lado direito */
+    right: 9.3rem !important; /* recuo de ~2rem do lado direito */
     margin-top: 0.7rem;
   }
 
@@ -131,7 +131,7 @@ const ProjectInfo = styled(Box)`
   color: #333;
   transform: translateY(100%);
   transition: all 0.4s ease;
-  padding: 1.5rem 5rem 1.5rem 3rem;
+  padding: 1.5rem 3rem 1rem 4rem;
   text-align: left;
   display: flex;
   flex-direction: row;
@@ -160,7 +160,9 @@ const InfoLeft = styled.div`
 `;
 
 const InfoRight = styled.div`
-  width: 40%
+  width: 50%;
+  height: 100%;
+  margin-left: -3rem;
 `;
 
 // ====== COMPONENTE ======
@@ -238,7 +240,7 @@ const ProjectsSection = () => {
         spaceBetween={10}
         slidesPerView={2}
         speed={800}
-        style={{ width: "100%", padding: "0 50px" }}
+        style={{ width: "100%", padding: "0 10rem" }}
         breakpoints={{
           64: { slidesPerView: 1 },
           832: { slidesPerView: 2 },
@@ -250,19 +252,19 @@ const ProjectsSection = () => {
               <img src={p.img} alt={p.name} />
               <ProjectInfo>
                 <InfoLeft>
-                  <ProjectLabel variant="h5">Construção</ProjectLabel>
+                  <ProjectLabel variant="h6">Construção</ProjectLabel>
                   <ProjectText>{p.name}</ProjectText>
 
-                  <ProjectLabel>Área | m²</ProjectLabel>
+                  <ProjectLabel  variant="h6">Área | m²</ProjectLabel>
                   <ProjectText>{p.area}</ProjectText>
 
-                  <ProjectLabel>Localização</ProjectLabel>
+                  <ProjectLabel  variant="h6">Localização</ProjectLabel>
                   <ProjectText>{p.location}</ProjectText>
                 </InfoLeft>
 
                 <InfoRight>
-                  <ProjectLabel>Descrição:</ProjectLabel>
-                  <ProjectText>{p.description}</ProjectText>
+                  <ProjectLabel  variant="h6">Descrição:</ProjectLabel>
+                  <ProjectText style={{ width: '80%'}}>{p.description}</ProjectText>
                 </InfoRight>
 
               </ProjectInfo>

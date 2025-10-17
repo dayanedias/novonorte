@@ -14,14 +14,16 @@ const SectionTitle = styled(Typography)`
   font-weight: 700;
   color: #2c3e50;
   font-size: 2.5rem;
+  padding-bottom: 1rem;
 `;
 
 const SectionSubtitle = styled(Typography)`
   text-align: center;
-  color: #2c3e50;
-  line-height: 1.3;
+  color: #666666;
+  line-height: 1.4;
   margin-bottom: 3rem;
   font-size: 1.1rem;
+  padding-bottom: 3rem;
 `;
 
 const ContactForm = styled(Box)`
@@ -47,15 +49,14 @@ const ContactSectionComponent = () => {
   return (
     <ContactSection id="contato">
       <Container maxWidth="md">
-        <SectionTitle variant="h3">
-          Fale com a gente
-        </SectionTitle>
-        <SectionSubtitle>
-          Pronto pra começar?<br />
-          Clique no ícone do WhatsApp e tire todas as suas dúvidas com nosso time agora!
-        </SectionSubtitle>
-
         <ContactForm>
+          <SectionTitle variant="h3" fontWeight={500}>
+            Fale com a gente
+          </SectionTitle>
+          <SectionSubtitle variant="body2">
+            Pronto pra começar?<br />
+            Clique no ícone do WhatsApp e tire todas as suas dúvidas com nosso time agora!
+          </SectionSubtitle>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
               <TextField
