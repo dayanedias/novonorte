@@ -44,6 +44,7 @@ const SectionSubtitle = styled(Typography)`
 
 const ContactForm = styled(Box)`
   background: white;
+  opacity: 0.9;
   padding: 2.5rem 2rem;
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -105,10 +106,10 @@ const ContactSectionComponent = () => {
               <TextField fullWidth label="Empresa" variant="outlined" required />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth label="Nome Completo" variant="outlined" required />
+              <TextField fullWidth label="Cargo" variant="outlined" required />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth label="Cargo" variant="outlined" required />
+              <TextField fullWidth label="Nome Completo" variant="outlined" required />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField fullWidth label="Telefone" variant="outlined" />

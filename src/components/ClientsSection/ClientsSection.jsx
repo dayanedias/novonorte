@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -28,7 +28,7 @@ const Wrapper = styled(Box)`
     align-items: center;
   }
 
-    .swiper-navigation-icon {
+  .swiper-navigation-icon {
     width: 50%;
     height: 50%;
   }
@@ -95,37 +95,84 @@ const ClientCard = styled(Box)`
   transition: all 0.3s ease;
   filter: grayscale(100%);
   opacity: 0.7;
+  position: relative;
+  overflow: hidden;
 
   &:hover {
     filter: grayscale(0%);
     opacity: 1;
     background: #eaeaea;
   }
+`;
 
-  img {
-    max-height: 80px;
-    width: auto;
-  }
+const ClientImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 20px;
 `;
 
 // ====== COMPONENTE ======
 const ClientsSectionComponent = () => {
+  const [validClients, setValidClients] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const clients = [
-    { name: "Zure", logo: "/novonorte-site/images/Logo-1.png" },
-    { name: "Lote5", logo: "/novonorte-site/images/Logo-2.png" },
-    { name: "Ribeiro Aquino", logo: "/novonorte-site/images/Logo-3.png" },
-    { name: "Tensor", logo: "/novonorte-site/images/Logo-4.png" },
+    { name: "Zure", logo: "/novonorte-site/images/cliente1.webp" },
+    { name: "Zure", logo: "/novonorte-site/images/cliente2.webp" },
+    { name: "Lote5", logo: "/novonorte-site/images/cliente3.webp" },
+    { name: "Ribeiro Aquino", logo: "/novonorte-site/cliente4.webp" },
+    { name: "Ribeiro Aquino", logo: "/novonorte-site/cliente5.webp" },
+    { name: "Tensor", logo: "/novonorte-site/images/cliente6.webp" },
   ];
+
+  // Função para verificar se a imagem existe
+  const checkImageExists = (url) => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+    });
+  };
+
+  useEffect(() => {
+    // Verificar quais imagens existem
+    const validateClientImages = async () => {
+      const validatedClients = [];
+      
+      for (const client of clients) {
+        const exists = await checkImageExists(client.logo);
+        if (exists) {
+          validatedClients.push(client);
+        }
+      }
+      
+      setValidClients(validatedClients);
+      setLoading(false);
+    };
+
+    validateClientImages();
+  }, []);
 
   useEffect(() => {
     // Força o Swiper a mostrar as setas após renderização
     const buttons = document.querySelectorAll(".swiper-button-next, .swiper-button-prev");
     buttons.forEach((btn) => (btn.style.display = "flex"));
-  }, []);
+  }, [validClients]);
+
+  // Se não há clientes válidos, não renderiza o componente
+  if (loading) {
+    return null; // ou um loading spinner
+  }
+
+  if (validClients.length === 0) {
+    return null;
+  }
 
   return (
     <Wrapper id="clientes">
-      <Container maxWidth="lg">
+      <Container style={{ maxWidth: 1260 }}>
         <SectionTitle variant="h3" fontWeight={500}>Nossos Clientes</SectionTitle>
         <SectionSubtitle variant="body2">
           Trabalhamos com dedicação e transparência em cada projeto, construindo parcerias duradouras. <br />
@@ -134,31 +181,35 @@ const ClientsSectionComponent = () => {
 
         <Swiper
           modules={[Navigation, Autoplay]}
-          navigation
-          loop
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: true,
-          }}
+          navigation={validClients.length > 1}
+          loop={validClients.length > 1}
+          autoplay={
+            validClients.length > 1
+              ? {
+                  delay: 3000,
+                  disableOnInteraction: true,
+                }
+              : false
+          }
           spaceBetween={10}
-          slidesPerView={2}
+          slidesPerView={Math.min(2, validClients.length)}
           speed={800}
-          style={{ width: "100%", padding: "0 50px", marginTop: "4rem" }}
+          style={{ width: "100%", padding: "0 50px", marginTop: "2rem" }}
           breakpoints={{
-            320: { slidesPerView: 1 },
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 4 },
+            320: { slidesPerView: Math.min(1, validClients.length) },
+            640: { slidesPerView: Math.min(2, validClients.length) },
+            1024: { slidesPerView: Math.min(4, validClients.length) },
           }}
         >
-          {clients.map((client, index) => (
+          {validClients.map((client, index) => (
             <SwiperSlide key={index}>
-              <ClientCard>
-                <img
+              {/* <ClientCard> */}
+                <ClientImage
                   src={client.logo}
                   alt={client.name}
-                  onError={(e) => (e.target.style.display = "none")}
+                  loading="lazy"
                 />
-              </ClientCard>
+              {/* </ClientCard> */}
             </SwiperSlide>
           ))}
         </Swiper>

@@ -10,6 +10,7 @@ import ProjectsSection from '../components/ProjectsSection/ProjectsSection';
 import ClientsSection from '../components/ClientsSection/ClientsSection';
 import ContactSection from '../components/ContactSection/ContactSection';
 import Footer from '../components/Footer/Footer';
+import OpinionsSection from '../components/OpinionsSection/OpinionsSection';
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
       <FeaturesSection />
       <ProjectsSection />
       <ClientsSection />
+      <OpinionsSection />
       <ContactSection />
       <Footer />
     </Box>
