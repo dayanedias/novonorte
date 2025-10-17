@@ -1,80 +1,202 @@
-// src/components/ProjectsSection/ProjectsSection.jsx
-import React from 'react';
-import { Container, Box, Typography, Button } from '@mui/material';
-import styled from 'styled-components';
+import React from "react";
+import { Box, Typography } from "@mui/material";
+import styled from "styled-components";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
-const ProjectsSection = styled(Box)`
+// ====== ESTILOS ======
+const Wrapper = styled(Box)`
+  width: 100%;
+  background: #f2f2f2;
   padding: 100px 0;
-  background: white;
+  overflow: hidden;
 `;
 
 const SectionTitle = styled(Typography)`
-  text-align: center;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  color: #2c3e50;
+  text-align: center; 
+  margin-bottom: 1rem; 
+  font-weight: 700; 
+  color: #2c3e50; 
   font-size: 2.5rem;
-`;
+  padding-bottom: 1rem;
+  `;
 
 const SectionSubtitle = styled(Typography)`
-  text-align: center;
-  color: #666666;
-  line-height: 1.4;
-  margin-bottom: 3rem;
+  text-align: center; 
+  color: #666666; 
+  line-height: 1.4; 
+  margin-bottom: 3rem; 
   font-size: 1.1rem;
 `;
 
-const ProjectsButton = styled(Button)`
-  background: transparent;
-  color: #ff4814;
-  border: 2px solid #ff4814;
-  padding: 12px 40px;
-  font-weight: 500;
-  margin: 2rem auto;
+const ButtonCenter = styled.button`
   display: block;
-  
+  background: #ff4814;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 4rem;
+  font-size: 1rem;
+  margin: 2rem auto 3rem;
+  cursor: pointer;
+  transition: 0.3s;
+
   &:hover {
-    background: #ff4814;
-    color: white;
+    background: #e63e10;
   }
 `;
 
-const SliderContainer = styled(Box)`
-  background: #f8f9fa;
-  padding: 2rem;
-  border-radius: 8px;
-  margin-top: 2rem;
+const ProjectCard = styled(Box)`
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  border-radius: 0;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
 `;
 
-const ProjectsSectionComponent = () => {
-  return (
-    <ProjectsSection id="obras">
-      <Container maxWidth="lg">
-        <SectionTitle variant="h3">
-          Nossos Projetos
-        </SectionTitle>
-        <SectionSubtitle>
-          Nosso processo é simples: reunião inicial, arquitetura, orçamento e, após aprovação,<br />
-          execução. Entregamos com a qualidade Novonorte®.
-        </SectionSubtitle>
-        
-        <ProjectsButton variant="outlined">
-          Confira +
-        </ProjectsButton>
+const ProjectInfo = styled(Box)`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #333;
+  transform: translateY(100%);
+  transition: all 0.4s ease;
+  padding: 1.5rem;
+  text-align: left;
 
-        <SliderContainer>
-          <Typography 
-            textAlign="center" 
-            color="#666" 
-            sx={{ fontStyle: 'italic' }}
-          >
-            {/* Slider will be implemented here */}
-            Área para slider de projetos
-          </Typography>
-        </SliderContainer>
-      </Container>
-    </ProjectsSection>
+  ${ProjectCard}:hover & {
+    transform: translateY(0%);
+  }
+`;
+
+const ProjectLabel = styled(Typography)`
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111;
+  margin-top: 0.5rem;
+`;
+
+const ProjectText = styled(Typography)`
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+`;
+
+// ====== COMPONENTE ======
+const ProjectsSection = () => {
+  const projects = [
+    {
+      img: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7",
+      name: "Galpão Mercedes",
+      area: "54.246",
+      location: "São José dos Campos, SP",
+      description:
+        "Realização de projeto executivo e construção de um galpão logístico com características de cobertura e fechamentos laterais metálicos.",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1600607686527-6fb886090705",
+      name: "Casa Terras do Vale",
+      area: "420",
+      location: "Jacareí, SP",
+      description:
+        "Execução completa de residência de alto padrão, com conceito moderno e integração entre ambientes internos e externos.",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1599423300746-b62533397364",
+      name: "Apartamento Urban",
+      area: "210",
+      location: "São Paulo, SP",
+      description:
+        "Reforma completa de apartamento contemporâneo com foco em conforto, iluminação natural e aproveitamento de espaços.",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae",
+      name: "Centro Logístico",
+      area: "75.000",
+      location: "Campinas, SP",
+      description:
+        "Planejamento e execução de centro logístico com alta eficiência energética e estrutura metálica modular.",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914",
+      name: "Edifício Horizon",
+      area: "1.500",
+      location: "Taubaté, SP",
+      description:
+        "Construção vertical com design clean e tecnologia sustentável aplicada a ambientes corporativos.",
+    },
+  ];
+
+  return (
+    <Wrapper id="obras">
+      <SectionTitle variant="h3" fontWeight={500}>
+        Nossos Projetos
+      </SectionTitle>
+
+      <SectionSubtitle variant="body2">
+        Nosso processo é simples: reunião inicial, arquitetura, orçamento e, após aprovação,<br /> execução. Entregamos com a qualidade Novonorte®.
+      </SectionSubtitle>
+
+      <ButtonCenter>Confira +</ButtonCenter>
+
+      <Swiper
+        modules={[Navigation, Autoplay]}
+        navigation
+        loop
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        spaceBetween={10}
+        slidesPerView={3}
+        speed={800}
+        style={{ width: "100%", padding: "0 50px" }}
+        breakpoints={{
+          0: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1200: { slidesPerView: 3 },
+        }}
+      >
+        {projects.map((p, i) => (
+          <SwiperSlide key={i}>
+            <ProjectCard>
+              <img src={p.img} alt={p.name} />
+              <ProjectInfo>
+                <ProjectLabel>Construção</ProjectLabel>
+                <ProjectText>{p.name}</ProjectText>
+
+                <ProjectLabel>Área | m²</ProjectLabel>
+                <ProjectText>{p.area}</ProjectText>
+
+                <ProjectLabel>Localização</ProjectLabel>
+                <ProjectText>{p.location}</ProjectText>
+
+                <ProjectLabel>Descrição:</ProjectLabel>
+                <ProjectText>{p.description}</ProjectText>
+              </ProjectInfo>
+            </ProjectCard>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </Wrapper>
   );
 };
 
-export default ProjectsSectionComponent;
+export default ProjectsSection;
