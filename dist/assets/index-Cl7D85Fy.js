@@ -858,7 +858,7 @@ qualidade e resultados`,description:"Deixamos nossa marca de excelência em todo
   line-height: 1.5;
 `,k5=()=>k.jsx(T5,{children:k.jsxs(di,{maxWidth:"lg",children:[k.jsxs($e,{sx:{textAlign:"center",mb:3},children:[k.jsx(lv,{children:k.jsx(C5,{})}),k.jsx(lv,{children:k.jsx(E5,{})})]}),k.jsx(uv,{variant:"body2",paragraph:!0,children:"© 2021 Novonorte Engenharia & Construção. Todos os direitos reservados."}),k.jsx(uv,{variant:"body2",children:"Av. Cassiano Ricardo, 601 - 12º andar, São José dos Campos-SP : comercial@novonorte.eng.br : WhatsApp : (12) 98711.3179"})]})}),cv="#ff4814",P5="#f0f0f0",R5=se($e)`
   width: 100%;
-  padding-bottom: 5rem;
+  padding-bottom: 4rem;
   background-color: white !important;
   overflow: hidden;
 
@@ -890,12 +890,10 @@ qualidade e resultados`,description:"Deixamos nossa marca de excelência em todo
 
   .swiper-button-prev {
     left: 0.2rem !important;
-    margin-top: 0.1rem;
   }
 
   .swiper-button-next {
     right: 0.2rem !important;
-    margin-top: 0.7rem;
   }
 
   .swiper-button-next:hover,
@@ -911,6 +909,8 @@ qualidade e resultados`,description:"Deixamos nossa marca de excelência em todo
   }
 
   @media (max-width: 768px) {
+    padding: 3rem 0;
+    
     .swiper-button-next,
     .swiper-button-prev {
       display: none;
@@ -923,84 +923,132 @@ qualidade e resultados`,description:"Deixamos nossa marca de excelência em todo
   color: #2c3e50;
   font-size: 2.5rem;
   padding-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `,M5=se(ut)`
   text-align: center;
   color: #666666;
   line-height: 1.4;
   margin-bottom: 3rem;
   font-size: 1.1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
 `,I5=se($e)`
-  background: white;
-  padding: 3rem 2.5rem 1.5rem; /* Ajustado padding inferior para o rabo */
-  box-shadow: none; /* Removido box-shadow */
-  min-height: 300px;
-  max-height: 300px;
+  background: ${P5};
+  padding: 2rem 1.5rem 3rem;
   display: flex;
   flex-direction: column;
-  transition: none;
-  border: none; /* Removido border */
+  align-items: center;
   position: relative;
-  /* Estilo do container que envolve o balão */
-  background: ${P5}; /* Transparente para usar o fundo */
-  
-  /* Ajuste no SwiperSlide para dar espaço à navegação */
-  .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
+  min-height: 380px;
+  height: auto;
 
-  & > div:first-child { /* O Balão de Fala */
-    background: white;
-    border-radius: 2.5rem;
-    border: 1px solid grey;
-    padding: 3rem 2.5rem 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    position: relative;
-    margin-bottom: 1rem; /* Espaço para o nome */
-    flex-grow: 1; /* Garante que o balão ocupe o espaço */
+  @media (max-width: 768px) {
+    padding: 1.5rem 1rem 2.5rem;
+    min-height: 350px;
+    margin: 0 10px;
   }
 `,O5=se($e)`
-  /* Cria o 'rabo' do balão */
+  background: white;
+  border-radius: 2.5rem;
+  border: 1px solid #ddd;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin-bottom: 2rem;
+  width: 85%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem 1.2rem;
+    border-radius: 1.8rem;
+  }
+`,$5=se($e)`
   width: 0;
   height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 20px solid white;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid white;
   position: absolute;
-  bottom: -20px;
+  bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-`,$5=se($e)`
+
+  @media (max-width: 768px) {
+    border-left-width: 12px;
+    border-right-width: 12px;
+    border-top-width: 12px;
+    bottom: -12px;
+  }
+`,z5=se($e)`
   margin-bottom: 1.5rem;
   display: flex;
   justify-content: center;
-`,z5=se(ut)`
-  color: #333; /* Cor de texto mais escura */
-  line-height: 1.5;
-  font-size: 1rem; /* Tamanho de fonte menor */
-  text-align: center;
-  margin-bottom: 0; /* Removido margin-bottom */
-  font-style: normal; /* Removido itálico */
-  position: relative;
-  padding: 0; /* Removido padding horizontal */
 
-  &::before {
-    /* Remove a aspa decorativa */
-    content: none;
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
   }
 `,L5=se(ut)`
-  font-weight: 700; /* Nome em negrito */
+  color: #333;
+  line-height: 1.6;
+  font-size: 1rem;
+  text-align: center;
+  font-style: normal;
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    -webkit-line-clamp: 5;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 6;
+  }
+`,N5=se($e)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 0.5rem;
+`,A5=se(ut)`
+  font-weight: 700;
   color: #2c3e50;
-  font-size: 1rem; /* Tamanho ajustado */
-  text-align: center;
-  margin-bottom: 0; /* Removido margin-bottom */
-  display: inline;
-`,N5=se(ut)`
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`,j5=se(ut)`
   color: #666;
-  font-size: 1rem; /* Tamanho ajustado */
-  text-align: center;
+  font-size: 0.95rem;
   font-weight: 400;
-  display: inline;
-`,A5=()=>{const e=[{name:"João Silva",rating:5,location:"Equilibrium Advogados, São Paulo-SP",opinion:' "Estou muito feliz com o trabalho. Eles construíram minha casa com rapidez e qualidade. Recomendo!" '},{name:"Maria Santos",rating:5,location:"Solus, São José dos Campos-SP",opinion:"Contratei para uma consultoria em um projeto que eu tinha para minha área gourmet. Deram ótimas dicas e acompanharam o serviço para que tudo ficasse perfeito."},{name:"Carlos Oliveira",rating:5,location:"Residencial Alphaville, Campinas-SP",opinion:"Profissionalismo e competência definem o trabalho desta empresa. Fizeram a reforma completa do meu apartamento dentro do prazo e orçamento."},{name:"Ana Costa",rating:5,location:"Condomínio Green Valley, São José dos Campos-SP",opinion:"Trabalho impecável! Desde o projeto até a execução, tudo foi feito com muita seriedade. A equipe é muito prestativa e resolveu todas as minhas dúvidas."}];return k.jsx(R5,{id:"opinioes",children:k.jsxs(di,{style:{maxWidth:1260},children:[k.jsx(_5,{variant:"h3",fontWeight:500,children:"Opiniões"}),k.jsxs(M5,{variant:"body2",children:["A voz de nossos clientes é fundamental para aprimorarmos constantemente.",k.jsx("br",{}),"Confira algumas das opiniões sobre nosso trabalho."]}),k.jsx(Jl,{modules:[Rf,_f],navigation:e.length>1,loop:e.length>1,autoplay:{delay:5e3,disableOnInteraction:!1},spaceBetween:30,slidesPerView:2,speed:800,style:{width:"100%",padding:"0 50px",marginTop:"2rem"},breakpoints:{320:{slidesPerView:1,spaceBetween:20},768:{slidesPerView:1,spaceBetween:25},1024:{slidesPerView:2,spaceBetween:30}},children:e.map((n,o)=>k.jsx(eu,{children:k.jsxs(I5,{children:[k.jsxs($e,{children:[k.jsx($5,{children:k.jsx(Qk,{value:n.rating,readOnly:!0,size:"large",sx:{color:cv,fontSize:"1.8rem","& .MuiRating-iconFilled":{color:cv}}})}),k.jsxs(z5,{variant:"body1",children:[n.opinion.trim().replace(/^"|"$/g,"")," "]}),k.jsx(O5,{})," "]}),k.jsxs($e,{sx:{display:"flex",flexDirection:"column",textAlign:"center",marginTop:"1rem"},children:[k.jsxs(L5,{variant:"h6",children:[n.name,","]}),k.jsx(N5,{variant:"body2",children:n.location})]})]})},o))})]})})},j5=()=>k.jsxs($e,{children:[k.jsx(D2,{}),k.jsx(eR,{}),k.jsx(aR,{}),k.jsx(fR,{}),k.jsx(TR,{}),k.jsx(c5,{}),k.jsx(h5,{}),k.jsx(A5,{}),k.jsx(b5,{}),k.jsx(k5,{})]});function F5(){return k.jsxs(Yb,{theme:vP,children:[k.jsx(kE,{}),k.jsx("div",{className:"App",children:k.jsx(j5,{})})]})}nx.createRoot(document.getElementById("root")).render(k.jsx(je.StrictMode,{children:k.jsx(F5,{})}));
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+`,F5=()=>{const e=[{name:"João Silva",rating:5,location:"Equilibrium Advogados, São Paulo-SP",opinion:"Estou muito feliz com o trabalho. Eles construíram minha casa com rapidez e qualidade. Recomendo!"},{name:"Maria Santos",rating:5,location:"Solus, São José dos Campos-SP",opinion:"Contratei para uma consultoria em um projeto que eu tinha para minha área gourmet. Deram ótimas dicas e acompanharam o serviço para que tudo ficasse perfeito."},{name:"Carlos Oliveira",rating:5,location:"Residencial Alphaville, Campinas-SP",opinion:"Profissionalismo e competência definem o trabalho desta empresa. Fizeram a reforma completa do meu apartamento dentro do prazo e orçamento."},{name:"Ana Costa",rating:5,location:"Condomínio Green Valley, São José dos Campos-SP",opinion:"Trabalho impecável! Desde o projeto até a execução, tudo foi feito com muita seriedade. A equipe é muito prestativa e resolveu todas as minhas dúvidas."}];return k.jsx(R5,{id:"opinioes",children:k.jsxs(di,{style:{maxWidth:1260},children:[k.jsx(_5,{variant:"h3",fontWeight:500,children:"Opiniões"}),k.jsxs(M5,{variant:"body2",children:["A voz de nossos clientes é fundamental para aprimorarmos constantemente.",k.jsx("br",{}),"Confira algumas das opiniões sobre nosso trabalho."]}),k.jsx(Jl,{modules:[Rf,_f],navigation:e.length>1,loop:e.length>1,autoplay:{delay:5e3,disableOnInteraction:!1},spaceBetween:20,slidesPerView:1,speed:800,style:{width:"100%",marginTop:"2rem",padding:"0 20px"},breakpoints:{640:{slidesPerView:1,spaceBetween:25},1024:{slidesPerView:2,spaceBetween:30,padding:"0 50px"}},children:e.map((n,o)=>k.jsx(eu,{children:k.jsxs(I5,{children:[k.jsxs(O5,{children:[k.jsx(z5,{children:k.jsx(Qk,{value:n.rating,readOnly:!0,size:"large",sx:{color:cv,fontSize:{xs:"1.5rem",md:"1.8rem"},"& .MuiRating-iconFilled":{color:cv}}})}),k.jsx(L5,{variant:"body1",children:n.opinion}),k.jsx($5,{})]}),k.jsxs(N5,{children:[k.jsxs(A5,{variant:"h6",children:[n.name,","]}),k.jsx(j5,{variant:"body2",children:n.location})]})]})},o))})]})})},D5=()=>k.jsxs($e,{children:[k.jsx(D2,{}),k.jsx(eR,{}),k.jsx(aR,{}),k.jsx(fR,{}),k.jsx(TR,{}),k.jsx(c5,{}),k.jsx(h5,{}),k.jsx(F5,{}),k.jsx(b5,{}),k.jsx(k5,{})]});function B5(){return k.jsxs(Yb,{theme:vP,children:[k.jsx(kE,{}),k.jsx("div",{className:"App",children:k.jsx(D5,{})})]})}nx.createRoot(document.getElementById("root")).render(k.jsx(je.StrictMode,{children:k.jsx(B5,{})}));

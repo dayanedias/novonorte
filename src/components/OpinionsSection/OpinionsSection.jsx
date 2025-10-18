@@ -13,7 +13,7 @@ const BACKGROUND_COLOR = "#f0f0f0";
 // ====== ESTILOS MODIFICADOS ======
 const Wrapper = styled(Box)`
   width: 100%;
-  padding: 4rem 0;
+  padding-bottom: 4rem;
   background-color: white !important;
   overflow: hidden;
 
